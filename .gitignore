@@ -105,13 +105,14 @@ venv.bak/
 
 
 # else
+.DS_Store
 /config
 /dcept
 /volume
-daemon.sh
-debug.sh
-docker_build.sh
-docker-compose.yml
-Dockerfile
-john-1.8.0-jumbo-1.tar.gz
-launcher.sh
+/daemon.sh
+/debug.sh
+/docker_build.sh
+/docker-compose.yml
+/Dockerfile
+/john-1.8.0-jumbo-1.tar.gz
+/launcher.sh
