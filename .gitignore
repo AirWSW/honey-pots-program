@@ -102,3 +102,16 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
+# else
+/config
+/dcept
+/volume
+daemon.sh
+debug.sh
+docker_build.sh
+docker-compose.yml
+Dockerfile
+john-1.8.0-jumbo-1.tar.gz
+launcher.sh
