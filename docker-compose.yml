@@ -1,0 +1,73 @@
+version: "3.7"
+
+
+services:
+  dcept-master:
+    build: 
+      context: .
+      args:
+        dcept_cfg: ./config/master.cfg
+    image: dcept:master
+    ports: 
+      - "80:80"
+    networks:
+      dcept_net_new:
+        ipv4_address: 172.19.0.2
+
+  dcept-slave-0:
+    build: 
+      context: .
+      args:
+        dcept_cfg: ./config/slave.cfg
+    image: dcept:slave
+    networks:
+      dcept_net_new:
+        ipv4_address: 172.19.0.3
+
+  dcept-slave-1:
+    build: 
+      context: .
+      args:
+        dcept_cfg: ./config/slave.cfg
+    image: dcept:slave
+    networks:
+      dcept_net_new:
+        ipv4_address: 172.19.0.4
+
+  dcept-slave-2:
+    build: 
+      context: .
+      args:
+        dcept_cfg: ./config/slave.cfg
+    image: dcept:slave
+    networks:
+      dcept_net_new:
+        ipv4_address: 172.19.0.5
+
+  dcept-slave-3:
+    build: 
+      context: .
+      args:
+        dcept_cfg: ./config/slave.cfg
+    image: dcept:slave
+    networks:
+      dcept_net_new:
+        ipv4_address: 172.19.0.6
+
+  dcept-slave-4:
+    build: 
+      context: .
+      args:
+        dcept_cfg: ./config/slave.cfg
+    image: dcept:slave
+    networks:
+      dcept_net_new:
+        ipv4_address: 172.19.0.7
+
+
+networks:
+  dcept_net_new:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.19.0.1/24"
