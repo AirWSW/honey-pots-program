@@ -118,10 +118,10 @@ def kerb_handler(kp, domain, username):
         except AttributeError:
             pass
 
-        try:
-            kerbName = kp.kerberosstring
-        except AttributeError:
-            pass
+        # try:
+        #     kerbName = kp.kerberosstring
+        # except AttributeError:
+        #     pass
 
         realm = kp.realm
         logging.debug("kerb-as-req for domain user %s\%s" % (realm, kerbName))
