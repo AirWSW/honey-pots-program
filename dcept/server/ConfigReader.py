@@ -7,11 +7,9 @@ import logging
 import ConfigParser
 import StringIO
 
-
 class ConfigError(Exception):
     def __init__(self, message=""):
-        Exception.__init__(self, message)
-
+        Exception.__init__(self,message)
 
 class ConfigReader():
 
@@ -20,7 +18,7 @@ class ConfigReader():
 
     def load(self, path):
         parser = ConfigParser.SafeConfigParser()
-
+        
         try:
             cfg_str = '[root]\n' + open(path, 'r').read()
             cfg_fp = StringIO.StringIO(cfg_str)
@@ -32,30 +30,28 @@ class ConfigReader():
         except (ConfigParser.ParsingError) as e:
             error = str(e)
             line = error[error.find("[line")+5:error.find("]")].strip()
-            raise ConfigParser.ParsingError(
-                "Failed to parse config file. Error on line: " + line)
+            raise ConfigParser.ParsingError("Failed to parse config file. Error on line: " + line)
 
         self.checkConfig()
 
     def setDefaults(self):
-        self.master_node = None
-        self.honeytoken_host = "0.0.0.0"
-        self.honeytoken_port = 80
-        self.honeytoken_param_name = "machine"
-        self.interface = None
-        self.domain = None
-        self.realm = None
-        self.honey_username = None
-        self.smtp_host = None
-        self.smtp_port = 25
-        self.email_address = None
-        self.subject = "DCEPT IDS Triggered - Immediate Action Necessary"
-        self.syslog_host = None
-        self.syslog_port = 514
-        self.log_level = "INFO"
+        self.master_node            = None
+        self.honeytoken_host        = "0.0.0.0"
+        self.honeytoken_port        = 80
+        self.honeytoken_param_name  = "machine"
+        self.interface              = None 
+        self.domain                 = None
+        self.realm                  = None
+        self.honey_username         = None
+        self.smtp_host              = None
+        self.smtp_port              = 25
+        self.email_address          = None
+        self.subject                = "DCEPT IDS Triggered - Immediate Action Necessary"
+        self.syslog_host            = None
+        self.syslog_port            = 514
+        self.log_level              = "INFO"
 
     def checkConfig(self):
-
         if not self.interface:
             raise ConfigError("You must configure an interface")
 
@@ -70,9 +66,12 @@ class ConfigReader():
 
         if self.log_level.upper() not in {"CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG", "NOTSET"}:
             raise ConfigError("Invalid setting for log level")
-        else:
-            level = logging.getLevelName(self.log_level.upper())
-            logging.getLogger().setLevel(level)
 
+        # if self.log_level.upper() not in {"CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG", "NOTSET"}:
+        #     raise ConfigError("Invalid setting for log level")
+        # else:
+        #     level = logging.getLevelName(self.log_level.upper())
+        #     logging.getLogger().setLevel(level)
 
 config = ConfigReader()
+
